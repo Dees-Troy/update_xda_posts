@@ -1,0 +1,62 @@
+Team Win Recovery Project 2.x, or twrp2 for short, is a custom recovery built with ease of use and customization in mind. It’s a fully touch driven user interface – no more volume rocker or power buttons to mash.  The GUI is also fully XML driven and completely theme-able. You can change just about every aspect of the look and feel.
+
+Phone look:
+[URL="http://tinyw.in/twrp"][IMG]http://phota.me/AgsV.png[/IMG][IMG]http://phota.me/WujW.png[/IMG][/URL]
+
+Tablet look:
+[URL="http://tinyw.in/twrp"][IMG]http://phota.me/eIDZ.png[/IMG][IMG]http://phota.me/fYob.png[/IMG][/URL]
+
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.7.0.0:[/COLOR][/SIZE]
+-Faster graphics rendering by disabling alpha blending on fully opaque objects thanks to Tassadar
+-Allow sideloading from /tmp on encrypted devices
+-Check for a crypto footer before asking for a password to prevent user confusion
+-Additional checks for validity to auto generated backup names
+-Text wrap in the console output
+-Proper caps lock support in the keyboard
+-Mouse support via USB OTG for devices with a broken digitizer
+-Improve scanning of storage locations for OpenRecoveryScript
+-Haptic feedback for buttons, keyboard, and vibration at the end of longer running actions thanks to Samer Diab
+-Fixed ext4 wiping when no selinux contexts are defined for that partition (e.g. sd-ext)
+-Update SuperSU to 1.93 and improve installation process
+-Added selinux contexts restoration to fix permissions
+-Load RTC offset on Qualcomm devices to fix the date/time in recovery
+-USB Mass Storage fixes Add SELinux support checking
+-Add Disk Usage class to better handle excluded folders (e.g. Google Music cache)
+-Add 4.4 decrypt support
+-Add some toolbox utilities to TWRP (namely to support SELinux functions not supported in busybox)
+-Various SELinux fixes and bug fixes
+
+Note: 2.7 marks the first time that we are dropping support for older devices. We are doing this because of the SELinux support needed to install 4.4 Kit Kat ROMs. The non-TWRP parts of the recovery image have to be built in at least a 4.1 tree and the kernel that is included in the recovery image has to support writing SELinux contexts. We don't own most of the devices that we support so we depend on outside testers and developers to help us update devices. In many cases we can't find someone readily. Come to #twrp on Freenode if you want to help bring your device up to date. You can tell right away if your device will support 4.4 ROMs in 2.7. Boot TWRP and press the console button (the square-ish button either in the bottom middle or upper right) to view the console output. If it doesn't say "Full SELinux support" in the console, then your device still needs some work. Help us help you.
+
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.6.3.0:[/COLOR][/SIZE]
+-Proper backup and restore of SELinux contexts (thanks to Tassadar)
+-Pull in some ROM information for backup name generation
+-Merge all recent patches from AOSP bringing TWRP up to date with Android 4.3
+-Add 1200x1920 theme (thanks to Tassadar)
+-A few other fixes and tweaks
+
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.6.1.0:[/COLOR][/SIZE]
+-Initial SELinux support (only a few devices, need testers so come by IRC if your device doesn't have it and needs it)
+-Initial support for f2fs file system formatting (Moto X)
+-Update SuperSU install for 4.3 ROMs
+-Fixed a permissions bug on files created during backup
+-Fixed a bug that caused TWRP to not wait for compressed backups to finish causing 0 byte files and md5sums to not match
+-Fixed decryption of encrypted data so that both TouchWiz and AOSP decryption are possible
+-Ignore lost+found folder during backup and size calculations
+-Various other minor bug fixes and tweaks
+
+[SIZE="5"][COLOR="Green"]DOWNLOAD:[/COLOR][/SIZE]
+Most devices can be updated quickly and easily with the TWRP Manager app:
+[URL="https://play.google.com/store/apps/details?id=com.jmz.soft.twrpmanager"]Play Store Link[/URL]
+1) Install TWRP Manager from the Play Store
+2) Open TWRP Manager and provide root permissions
+3) Hit Advanced->Install Recovery
+4) Verify the correct device name on your screen then press Install Recovery if the correct device is showing
+OR:
+[URL="http://tinyw.in/twrp"]You can find more information and download links on our website![/URL]
+
+[SIZE="5"][COLOR="Green"]BUGS:[/COLOR][/SIZE]
+If you have found a bug, please consider posting it to our [URL="https://github.com/TeamWin/Team-Win-Recovery-Project/issues"]github issues log[/URL].  It's pretty much impossible for us to keep up with the more than 40 threads that we have for the devices that we "directly" support. If you have a significant problem that cannot be answered in this thread, your best bet is to PM me directly, contact us via our website, or find us in our IRC channel below. If you see someone that's struggling, feel free to point it out to us. We need your help to help us keep track of all of our devices! Thanks!
+
+[SIZE="5"][COLOR="Green"]SUPPORT:[/COLOR][/SIZE]
+Live support is available via #twrp on Freenode with your IRC client or just [URL="http://webchat.freenode.net/?channels=twrp"]click this link[/URL].
