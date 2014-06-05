@@ -6,6 +6,13 @@ Phone look:
 Tablet look:
 [URL="http://tinyw.in/twrp"][IMG]http://phota.me/eIDZ.png[/IMG][IMG]http://phota.me/fYob.png[/IMG][/URL]
 
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.7.1.0:[/COLOR][/SIZE]
+-Add GUI option to change or repair file systems on individual partitions. The change is destructive so backup your data including internal sdcard first. This option should make it a little easier to migrate a device from ext4 -> f2fs, for instance. You will find this option under Wipe -> Advanced Wipe, then select only one partition and then press the Repair or Change File System button. If a developer has added f2fs support for your device and we don't have it in TWRP, please contact me via PM to arrange for it to be added.
+-Various bugfixes to backup and restore
+-Improvements to USB storage handling
+-Added a class to search for files to make finding the correct brightness file automatic in most cases
+-Various other bugfixes and tweaks
+
 [SIZE="5"][COLOR="Green"]CHANGELOG for 2.7.0.0:[/COLOR][/SIZE]
 -Faster graphics rendering by disabling alpha blending on fully opaque objects thanks to Tassadar
 -Allow sideloading from /tmp on encrypted devices
@@ -34,16 +41,6 @@ Note: 2.7 marks the first time that we are dropping support for older devices. W
 -Merge all recent patches from AOSP bringing TWRP up to date with Android 4.3
 -Add 1200x1920 theme (thanks to Tassadar)
 -A few other fixes and tweaks
-
-[SIZE="5"][COLOR="Green"]CHANGELOG for 2.6.1.0:[/COLOR][/SIZE]
--Initial SELinux support (only a few devices, need testers so come by IRC if your device doesn't have it and needs it)
--Initial support for f2fs file system formatting (Moto X)
--Update SuperSU install for 4.3 ROMs
--Fixed a permissions bug on files created during backup
--Fixed a bug that caused TWRP to not wait for compressed backups to finish causing 0 byte files and md5sums to not match
--Fixed decryption of encrypted data so that both TouchWiz and AOSP decryption are possible
--Ignore lost+found folder during backup and size calculations
--Various other minor bug fixes and tweaks
 
 [SIZE="5"][COLOR="Green"]DOWNLOAD:[/COLOR][/SIZE]
 Most devices can be updated quickly and easily with the TWRP Manager app:
