@@ -1,0 +1,4 @@
+python update.py -u Dees_Troy -p PasswordGoesHere -v 2.8.0.0
+
+Add -d devicename to only do this for a specific device
+Add -t 1900/01/01 to provide your own date instead of using today's date
