@@ -6,53 +6,63 @@ Phone look:
 Tablet look:
 [URL="http://tinyw.in/twrp"][IMG]http://phota.me/eIDZ.png[/IMG][IMG]http://phota.me/fYob.png[/IMG][/URL]
 
-[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.0.0:[/COLOR][/SIZE]
--Add MTP support to recovery thanks mostly to bigbiff with a little help from Dees_Troy
--Add command line capabilities - you can now execute various TWRP features via adb instead of the touchscreen
--Add support for color in the console and give error, warning, and highlight lines different colors
--Track backup and restore progress based on file sizes to provide a much more accurate indication of progress
--Improve handling of /misc thanks to mdmower
--Improve setting of time on Qualcomm devices thanks to [NUT]
--Allow using images on slidervalue GUI objects thanks to Tassadar
--Allow using variables and addition and subtraction in variables for easier theming
--Add support for 1440x2560, 280x280, and 320x320 resolutions and update 240x240
--Allow ui.xml file to include additional xml files to help break up the theme and make TWRP easier to maintain
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.6.0:[/COLOR][/SIZE]
+
+-Fix daylight savings time rules for USA and Europe (_that)
+-Allow mulitple overlays for popup boxes (Dees_Troy)
+-Add pattern style password entry for decrypt (Tassadar)
+-Keyboard improvements (_that)
+-Update AOSP base to 5.1 (Dees_Troy)
+-Reduce theme count to 5 and rely on scaling (Dees_Troy)
+-Various scaling improvements (Dees_Troy)
+-Improved handling of resources in the GUI (_that)
+-Make scroll bar size proportional to list size (_that)
+-Allow scoll lists to render without a header (_that)
+-Make console scroll per pixel with kinetic scrolling (_that)
+-Support styles in XML to reduce XML size and improve consistentcy (Dees_Troy)
+-Various other fixes and improvements (mdmower, bigbiff, codelover, etc)
+
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.5.0:[/COLOR][/SIZE]
+
+-Scale the GUI - TWRP can read the theme's resolution and scale it up or down to fit the theme to your screen's resolution
+-Backups can now be cancelled while the backup is in progress (does not include restore because we don't want to leave your device in a bad state)
+-Improve thread handling and move input handling into the main rendering thread to improve stability
+-Make MTP work even if unplugged and plugged back in
+-Unify scrollable list code and make kinetic scrolling feel more natural
+-Fix handling of mapped zip files for OTA updates (CM12 updater)
+-USB keyboards should now work on all devices that support USB host mode via a USB OTG cable
+-Other small fixes and improvements
+
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.4.0:[/COLOR][/SIZE]
+
+-Add flashing of boot and recovery images via the TWRP GUI (Find the Images button on the Install page)
+-Fix some MTP related crashes and bugs
+-Eliminate TWRP toggling USB IDs during boot if MTP is enabled
+-Fix various adb sideload issues
+-Improve threading of actions
+-Eliminate separate thread for screen timeout
+-Update libblkid to 2.25.0
+-Use power button as back button on watch themes for easier navigation
+-Add mutex locking to data manager
+-Improve custom theme handling on encrypted devices
+-Allow the stock theme to be offset by build flags so we can center a lower res theme on a higher res screen especially for watches with round screens
+
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.3.0:[/COLOR][/SIZE]
+
+-MTP will now tell the host PC that storage is removed instead of disabling MTP completely
+-MTP will now report the correct max file size based on the file system in use to the host PC (may fix transfer of large files)
+-Update and improve fix permissions and make fixing contexts optional
+-Update SuperSU in TWRP to 2.40 and update install process
+-Make TWRP work properly on AArch64 (Nexus 9 is now built in true 64-bit binaries and libraries)
+-Attempt to set correct permissions and contexts on all files placed in storage so backups will show in Android
+-Fix kernel panic during MTP start on some devices
+-Support unicode fonts on devices with True Type Font support
+-Fix slider value not showing sometimes (vibration settings page)
+-Toggle MTP off during adb sideload to set correct USB IDs
+-Reduce library requirements for 5.0 L decrypt
 -Other minor fixes and improvements
 
-Over the course of the last year or so, bigbiff has worked to migrate various Java functions from Android's MTP implementation to bring you a fully C++ based MTP implementation that allows you to transfer files to both emulated storage and Micro SD cards. It's confirmed to work on various Nexus devices but we may have to make some changes on other devices to keep Windows happy. Windows is very picky about USB IDs and its drivers. We have tested it on Windows 7 and 8 as well as Ubuntu 14.04 Trusty. MTP is enabled by default, but we do toggle it off and on automatically during certain operations such as if you choose to wipe a storage partition. You can enable or disable MTP under the mount menu in TWRP. [URL="http://en.wikipedia.org/wiki/Media_Transfer_Protocol"]For more about what MTP is here[/URL].
-
-Note: Due to a weird bug with our MTP setup, you cannot copy a zip file to the root of storage with Windows. You can change the .zip to something else like .txt and then copy it to the root and rename the file back to .zip once it's copied to the device. You can also copy the zip into any subfolder.
-
-Command line support is also now available. You can perform various OpenRecoveryScript commands via the adb shell. Depending on what you are doing you may wish to do a "twrp set tw_mtp_enabled 0" and then reboot to prevent the MTP auto toggle from killing your adb interface. You can use this option to create and restore backups, wipe, install zips, and more. Via adb shell, type twrp followed by a space then enter the OpenRecoveryScript command and hit enter. [URL="http://www.teamw.in/OpenRecoveryScript"]Find more OpenRecoveryScript commands here[/URL].
-
-[SIZE="5"][COLOR="Green"]CHANGELOG for 2.7.1.0:[/COLOR][/SIZE]
--Add GUI option to change or repair file systems on individual partitions. The change is destructive so backup your data including internal sdcard first. This option should make it a little easier to migrate a device from ext4 -> f2fs, for instance. You will find this option under Wipe -> Advanced Wipe, then select only one partition and then press the Repair or Change File System button. If a developer has added f2fs support for your device and we don't have it in TWRP, please contact me via PM to arrange for it to be added.
--Various bugfixes to backup and restore
--Improvements to USB storage handling
--Added a class to search for files to make finding the correct brightness file automatic in most cases
--Various other bugfixes and tweaks
-
-[SIZE="5"][COLOR="Green"]CHANGELOG for 2.7.0.0:[/COLOR][/SIZE]
--Faster graphics rendering by disabling alpha blending on fully opaque objects thanks to Tassadar
--Allow sideloading from /tmp on encrypted devices
--Check for a crypto footer before asking for a password to prevent user confusion
--Additional checks for validity to auto generated backup names
--Text wrap in the console output
--Proper caps lock support in the keyboard
--Mouse support via USB OTG for devices with a broken digitizer
--Improve scanning of storage locations for OpenRecoveryScript
--Haptic feedback for buttons, keyboard, and vibration at the end of longer running actions thanks to Samer Diab
--Fixed ext4 wiping when no selinux contexts are defined for that partition (e.g. sd-ext)
--Update SuperSU to 1.93 and improve installation process
--Added selinux contexts restoration to fix permissions
--Load RTC offset on Qualcomm devices to fix the date/time in recovery
--USB Mass Storage fixes Add SELinux support checking
--Add Disk Usage class to better handle excluded folders (e.g. Google Music cache)
--Add 4.4 decrypt support
--Add some toolbox utilities to TWRP (namely to support SELinux functions not supported in busybox)
--Various SELinux fixes and bug fixes
-
-Note: 2.7 marks the first time that we are dropping support for older devices. We are doing this because of the SELinux support needed to install 4.4 Kit Kat ROMs. The non-TWRP parts of the recovery image have to be built in at least a 4.1 tree and the kernel that is included in the recovery image has to support writing SELinux contexts. We don't own most of the devices that we support so we depend on outside testers and developers to help us update devices. In many cases we can't find someone readily. Come to #twrp on Freenode if you want to help bring your device up to date. You can tell right away if your device will support 4.4 ROMs in 2.7. Boot TWRP and press the console button (the square-ish button either in the bottom middle or upper right) to view the console output. If it doesn't say "Full SELinux support" in the console, then your device still needs some work. Help us help you.
+Note: Starting with TWRP 2.8.2.0 and higher, adb sideload uses a new sideload method originally implemented in AOSP recovery. You will need the latest adb binaries to use sideload in these newer versions of TWRP. The version required is 1.0.32. You can find the version by running "adb version" on your computer. The new sideload feature no longer stores the zip on your device. Instead, a fuse file system is created in RAM and the zip is streamed from your computer. This puts less wear and tear on storage and ensures that large zips will not fill up all of your RAM. The sideload may spit an error on your PC side, but the zip should install just fine on your device.
 
 [SIZE="5"][COLOR="Green"]DOWNLOAD:[/COLOR][/SIZE]
 Most devices can be updated quickly and easily with the TWRP Manager app:
@@ -62,7 +72,7 @@ Most devices can be updated quickly and easily with the TWRP Manager app:
 3) Hit Advanced->Install Recovery
 4) Verify the correct device name on your screen then press Install Recovery if the correct device is showing
 OR:
-[URL="http://tinyw.in/twrp"]You can find more information and download links on our website![/URL]
+[URL="http://twrp.me"]You can find more information and download links on our NEW website![/URL] NOTE that the 2.8.6.0 version is ONLY available on our new site and is not available on our other, older mirrors!
 
 [SIZE="5"][COLOR="Green"]BUGS:[/COLOR][/SIZE]
 If you have found a bug, please consider posting it to our [URL="https://github.com/TeamWin/Team-Win-Recovery-Project/issues"]github issues log[/URL].  It's pretty much impossible for us to keep up with the more than 40 threads that we have for the devices that we "directly" support. If you have a significant problem that cannot be answered in this thread, your best bet is to PM me directly, contact us via our website, or find us in our IRC channel below. If you see someone that's struggling, feel free to point it out to us. We need your help to help us keep track of all of our devices! Thanks!
