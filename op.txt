@@ -1,78 +1,71 @@
-Team Win Recovery Project 2.x, or twrp2 for short, is a custom recovery built with ease of use and customization in mind. Its a fully touch driven user interface  no more volume rocker or power buttons to mash.  The GUI is also fully XML driven and completely theme-able. You can change just about every aspect of the look and feel.
+Team Win Recovery Project 3.x, or twrp3 for short, is a custom recovery built with ease of use and customization in mind. Its a fully touch driven user interface  no more volume rocker or power buttons to mash.  The GUI is also fully XML driven and completely theme-able. You can change just about every aspect of the look and feel.
 
-Phone look:
-[URL="http://tinyw.in/twrp"][IMG]http://phota.me/AgsV.png[/IMG][IMG]http://phota.me/WujW.png[/IMG][/URL]
+[URL="http://twrp.me"][IMG]https://twrp.me/images/home.png[/IMG]  [IMG]https://twrp.me/images/backupname.png[/IMG][/URL]
 
-Tablet look:
-[URL="http://tinyw.in/twrp"][IMG]http://phota.me/eIDZ.png[/IMG][IMG]http://phota.me/fYob.png[/IMG][/URL]
+[SIZE="5"][COLOR="Green"]CHANGELOG for 3.0.1-0:[/COLOR][/SIZE]
 
-[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.6.0:[/COLOR][/SIZE]
+-support new CM 13.0 pattern encryption (sultanqasim)
+-fix slow flashing issue due to modprobe (present on only some devices) (#twrp)
+-libtar updated to latest upstream and fixes (jcadduono)
+-fixes for loading custom themes (_that)
+-TWRP will now detect and install TWRP themes automatically through the normal zip install process (Dees_Troy)
+-translation updates - added Italian, Czech and Polish and significant updates to Dutch
+-progress bar improvements - progress bar updates during image flashing and better tracks progress during file system backups (tar) (Dees_Troy)
+-fix input box text display (Dees_Troy)
+-reboot option after zip install complete (bigbiff)
+-other mostly invisible bug fixes and improvements
 
--Fix daylight savings time rules for USA and Europe (_that)
--Allow mulitple overlays for popup boxes (Dees_Troy)
--Add pattern style password entry for decrypt (Tassadar)
--Keyboard improvements (_that)
--Update AOSP base to 5.1 (Dees_Troy)
--Reduce theme count to 5 and rely on scaling (Dees_Troy)
--Various scaling improvements (Dees_Troy)
--Improved handling of resources in the GUI (_that)
--Make scroll bar size proportional to list size (_that)
--Allow scoll lists to render without a header (_that)
--Make console scroll per pixel with kinetic scrolling (_that)
--Support styles in XML to reduce XML size and improve consistentcy (Dees_Troy)
--Various other fixes and improvements (mdmower, bigbiff, codelover, etc)
+[SIZE="5"][COLOR="Green"]CHANGELOG for 3.0.0-0:[/COLOR][/SIZE]
 
-[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.5.0:[/COLOR][/SIZE]
+-Completely new theme - Much more modern and much nicer looking (by z31s1g)
+-True Terminal Emulator - Includes arrow keys, tab and tab completion, etc. (by _that)
+-Language translation - It won’t be perfect and especially some languages that require large font files like Chinese & Japanese won’t be availble on most devices. Also some languages may only be partially translated at this time. Feel free to submit more translations to OmniROM’s Gerrit. (mostly by Dees_Troy)
+-Flashing of sparse images - On select devices you will be able to flash some parts of factory images via the TWRP GUI (by HashBang173)
+-Adopted storage support for select devices - TWRP can now decrypt adopted storage partitions from Marshmallow
+-Reworked graphics to bring us more up to date with AOSP - includes support for adf and drm graphics (by Dees_Troy)
+-SuperSU prompt will no longer display if a Marshmallow ROM is installed
+-Update exfat, exfat fuse, dosfstools (by mdmower)
+-Update AOSP base to 6.0
+-A huge laundry list of other minor fixes and tweaks
 
--Scale the GUI - TWRP can read the theme's resolution and scale it up or down to fit the theme to your screen's resolution
--Backups can now be cancelled while the backup is in progress (does not include restore because we don't want to leave your device in a bad state)
--Improve thread handling and move input handling into the main rendering thread to improve stability
--Make MTP work even if unplugged and plugged back in
--Unify scrollable list code and make kinetic scrolling feel more natural
--Fix handling of mapped zip files for OTA updates (CM12 updater)
--USB keyboards should now work on all devices that support USB host mode via a USB OTG cable
--Other small fixes and improvements
+WARNING: This is our first release in a long time. We have a lot of new and somewhat aggressive changes in this new release. The changes to the graphics back-end may cause some devices to not boot up properly or have other display-related issues. If you are not in a position to reflash an older build of TWRP, then wait until you are or at least wait until others have tried the new version for your specific device. You don’t want to end up with a non-working recovery and have to wait several hours or days to get to a computer to be able to fix it.
 
-[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.4.0:[/COLOR][/SIZE]
+Notes for themers: In addition to the udpated theme, we have introduced a theme version variable to the TWRP theme system. If the theme version does not match the version that TWRP expects, TWRP will reject the custom theme and load its stock theme. This change will ensure that people who update TWRP without updating their theme will still have a workable recovery. We have removed libjpeg support. The stock theme was only using a jpeg image for the splash / curtain. This change means that any custom themes will no longer be able to use jpeg images. It also means that tools used to repack recovery images with a different curtain / splash will need to be updated to use the new method.
 
--Add flashing of boot and recovery images via the TWRP GUI (Find the Images button on the Install page)
--Fix some MTP related crashes and bugs
--Eliminate TWRP toggling USB IDs during boot if MTP is enabled
--Fix various adb sideload issues
--Improve threading of actions
--Eliminate separate thread for screen timeout
--Update libblkid to 2.25.0
--Use power button as back button on watch themes for easier navigation
--Add mutex locking to data manager
--Improve custom theme handling on encrypted devices
--Allow the stock theme to be offset by build flags so we can center a lower res theme on a higher res screen especially for watches with round screens
+Version number notes: For a while we’ve been using a 4 digit version number and reserved the 4th digit for device-specific updates. For instance, we find and fix a device-specific issue like decryption of data on Nexus 5, we would release that as a 2.8.7.1. After a while, some people would start asking where 2.8.7.1 was for other devices. So, going forward we have decided to change the numbering scheme to 3.0.0-2, etc. Our hope is that this version numbering scheme will more clearly identify that the 4th digit does not indicate a version change for the code base.
 
-[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.3.0:[/COLOR][/SIZE]
+We need your help! The bulk of TWRP work is done by 3 people on a volunteer basis. We have pushed most of our device files to our github and we have a gerrit instance. If you have the ability, please help us maintain our official devices and/or add your device to our official device list. Thanks in advance!
 
--MTP will now tell the host PC that storage is removed instead of disabling MTP completely
--MTP will now report the correct max file size based on the file system in use to the host PC (may fix transfer of large files)
--Update and improve fix permissions and make fixing contexts optional
--Update SuperSU in TWRP to 2.40 and update install process
--Make TWRP work properly on AArch64 (Nexus 9 is now built in true 64-bit binaries and libraries)
--Attempt to set correct permissions and contexts on all files placed in storage so backups will show in Android
--Fix kernel panic during MTP start on some devices
--Support unicode fonts on devices with True Type Font support
--Fix slider value not showing sometimes (vibration settings page)
--Toggle MTP off during adb sideload to set correct USB IDs
--Reduce library requirements for 5.0 L decrypt
--Other minor fixes and improvements
+[SIZE="5"][COLOR="Green"]CHANGELOG for 2.8.7.0:[/COLOR][/SIZE]
 
-Note: Starting with TWRP 2.8.2.0 and higher, adb sideload uses a new sideload method originally implemented in AOSP recovery. You will need the latest adb binaries to use sideload in these newer versions of TWRP. The version required is 1.0.32. You can find the version by running "adb version" on your computer. The new sideload feature no longer stores the zip on your device. Instead, a fuse file system is created in RAM and the zip is streamed from your computer. This puts less wear and tear on storage and ensures that large zips will not fill up all of your RAM. The sideload may spit an error on your PC side, but the zip should install just fine on your device.
+-Initial ground work for software drawn keyboard (_that)
+-Fix handling of wiping internal storage on datamedia devices (xuefer)
+-Allow DataManager to set and read values from the system properties (xuefer)
+-Fix crash when taking screenshots on arm64 devices (xuefer)
+-Fix error message after an ORS script completes (Dees_Troy)
+-Fix crashes / error when creating encrypted backups (_that, Dees_Troy)
+-Add system read only option – more details below (Dees_Troy)
+-Add resize2fs and GUI option to run resize2fs (Dees_Troy)
+-Fix crash loop caused by empty lines in AOSP recovery command file (_that)
+-Prevent duplicate page overlays such as multiple lock screens (mdmower)
+
+Note: As always, be sure your custom theme is up to date (or remove your custom theme) before updating TWRP.
+
+System read only option: Devices that ship with 5.0 and higher as their initial OS are using block level OTA updates. With this style of OTA update, the update script checks to see if the system partition has ever been mounted read/write. Further, the script also usually runs an SHA sum of the entire system partition to detect if any changes have been made. If any changes have been made, the OTA update will refuse to install. Since not all OEMs and devices have factory images available, we have created a new feature in TWRP that detects if the system partition has ever been mounted read/write. If not, you will be prompted asking if you want TWRP to mount system as read/write. If you choose not to allow TWRP to mount as read/write, TWRP won’t prompt to install SuperSU and TWRP won’t try to patch the stock ROM to prevent TWRP from being replaced by stock recovery. The goal of this option is to hopefully allow the user to make a raw system image backup that they can use to get back to a state where they can take OTA updates again.
+
+resize2fs feature: On some devices like the Nexus 6, the factory images include a userdata image that is the proper size only for the 32GB units. If you flash the factory image to a 64GB Nexus 6, the data partition will appear as if it only has the free space of a 32GB device. Using the resize2fs option, TWRP can resize your data partition to take up the full space available. The resize2fs may also be useful to resize system partitions on devices where custom ROM system images don’t take up the full partition space. Lastly, resize2fs may be useful in some cases to reserve the proper space at the end of a data partition for a full disk encryption key, should your partition be formatted incorrectly for some reason.
+
+This new version also marks our first set of full builds using our new jenkins build server. You can track the progress of builds at [url]https://jenkins.twrp.me[/url] and we have taken additional steps to make it easier for device maintainers to step up and submit patches to our gerrit server at [url]https://gerrit.twrp.me[/url] to help us keep devices up to date and working.
 
 [SIZE="5"][COLOR="Green"]DOWNLOAD:[/COLOR][/SIZE]
-Most devices can be updated quickly and easily with the TWRP Manager app:
-[URL="https://play.google.com/store/apps/details?id=com.jmz.soft.twrpmanager"]Play Store Link[/URL]
-1) Install TWRP Manager from the Play Store
-2) Open TWRP Manager and provide root permissions
-3) Hit Advanced->Install Recovery
-4) Verify the correct device name on your screen then press Install Recovery if the correct device is showing
+Most devices can be updated quickly and easily within TWRP if you already have version 2.8.4.0 or higher installed
+1) Download the latest version from our website on your device
+2) Reboot to TWRP
+3) Hit Install and tap the "Images..." button in the lower right
+4) Browse to the location of the TWRP image on your device and select it
+5) Select recovery from the partition list and swipe to flash
 OR:
-[URL="http://twrp.me"]You can find more information and download links on our NEW website![/URL] NOTE that the 2.8.6.0 version is ONLY available on our new site and is not available on our other, older mirrors!
+[URL="http://twrp.me"]You can find more information and download links on our website.[/URL]
 
 [SIZE="5"][COLOR="Green"]BUGS:[/COLOR][/SIZE]
 If you have found a bug, please consider posting it to our [URL="https://github.com/TeamWin/Team-Win-Recovery-Project/issues"]github issues log[/URL].  It's pretty much impossible for us to keep up with the more than 40 threads that we have for the devices that we "directly" support. If you have a significant problem that cannot be answered in this thread, your best bet is to PM me directly, contact us via our website, or find us in our IRC channel below. If you see someone that's struggling, feel free to point it out to us. We need your help to help us keep track of all of our devices! Thanks!
